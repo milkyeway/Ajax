@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Auto Complete</title>
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+</head>
+<body>
+	<b>Start typing a name:</b><p>
+	name: <input type="text" onkeyup="showHint(this.value)">
+	<p>Suggestions: <span id="demo"></span></p>
+	
+	<script>	
+	function showHint(str) {
+		$.ajax({
+			url: "AutoComplete.jsp?q=" + str,
+			type: "GET",
+			success: function(data) {
+				$("#demo").html(data);
+			}
+	    });
+	}
+	</script>
+</body>
+</html>

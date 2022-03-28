@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="BIG5">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<h2>Post Method Demo</h2>
+	<div id="demo"></div>
+
+	<script>
+		var xhttp = new XMLHttpRequest();
+		xhttp.onreadystatechange = function() {
+// 			alert("test"); //確認是否跑四次
+			if (xhttp.readyState == 4 && xhttp.status == 200)
+				document.getElementById("demo").innerHTML = xhttp.responseText;
+		}
+		xhttp.open("Post", "NameCity.jsp", true);
+		xhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+// 沒加RequestHeader跑出來會有null
+		xhttp.send("name=Bitch&city=Taipei");
+	</script>
+
+
+</body>
+</html>

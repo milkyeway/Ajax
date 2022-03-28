@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="BIG5">
+<title>Insert title here</title>
+</head>
+<body>
+
+<h2>FormData Demo</h2>
+<form enctype="multipart/form-data">
+Name: <input type="text" name="name" ><P>
+City: <input type="text" name="city" ><P>
+</form>
+
+<button onclick="sendForm()">send</button>
+<div id="demo"></div>
+
+<script>
+function sendForm(){
+	var form = document.querySelector("form");
+	var formdata = new FormData(form);
+	var xhttp = new XMLHttpRequest();
+	xhttp.onload = function(){
+	document.getElementById("demo").innerHTML = xhttp.responseText;	
+	}
+	xhttp.open("POST","../FormData",true);
+	xhttp.send(formdata);
+}
+
+</script>
+
+</body>
+</html>
+
+<!-- enctype="multipart/form-data"不打也可以 -->
