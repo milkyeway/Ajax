@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="BIG5">
+<title>Insert title here</title>
+</head>
+<body>
+
+<h2>Form Serialize Demo</h2>
+<form>
+Name: <input type="text" name="name"><p>
+City: <input type="text" name="city"><p>
+</form>
+<button id="post">Send</button><p>
+<div id = "demo"></div>
+
+<script>
+$("#post").click(function(){
+	$("#demo").append($("form").serialize()+"<br>");
+	
+	$.ajax({
+		url:"NameCity.jsp?" + $("form").serialize(),
+		type:"GET",
+		success:function(data){
+					$("#demo").append(data);
+		}						
+	});	
+});
+
+
+</script>
+
+
+</body>
+</html>
