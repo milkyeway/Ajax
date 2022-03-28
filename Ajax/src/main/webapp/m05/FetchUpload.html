@@ -6,17 +6,27 @@
 </head>
 <body>
 
-UploadFile:<input type="file" onChange="doUpload()"/>
+	UploadFile:
+	<input type="file" onChange="doUpload()" />
 
-<script>
+	<script>
 function doUpload(){
 	const formdata = new FormData();
 	formdata.append('photo', event.target.files[0]);
 	
-	fetch('../UploadOneFile',{
-		method:'POST',
-		body: formdata
-	})		
+	  for (const file of acceptedFiles) {
+		    data.append('files[]', file, file.name);
+		  }
+
+	  return fetch('../UploadOneFile', {
+	    method: 'POST',
+	    body: formdata,      
+	  });
+		  
+//	fetch('../UploadOneFile',{
+	//	method:'POST',
+		//body: formdata
+	//})		
 }
 </script>
 
