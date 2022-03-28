@@ -1,0 +1,11 @@
+/.metadata/
+*.DS_Store
+bin
+target
+.classpath
+.project
+.settings
+.snap
+src/main/webapp/META-INF
+.idea
+*.iml
