@@ -1,0 +1,25 @@
+<h2>Get XML File Demo</h2>
+<table border="1" id="demo"></table>
+<script>
+	let xhttp = new XMLHttpRequest();
+	xhttp.onreadystatechange = function() {
+		let xmlDoc = xhttp.responseXML;
+		let txt = "<tr><th>書籍名稱<th>作者名";
+		let books = xmlDoc.getElementsByTagName("book");
+		for (let i = 0; i < books.length; i++) {
+			txt += "<tr>";
+			titles = books[i].getElementsByTagName("title");
+			txt += "<td>" + titles[0].firstChild.nodeValue;
+			authors = books[i].getElementsByTagName("authors");
+			txt += "<td>" + authors[0].firstChild.nodeValue;
+		}
+		document.getElementById("demo").innerHTML = txt;
+		let body = document.querySelector("body");
+		let div = document.createElement("div");
+		body.appendChild(div);
+		div.innerHTML = "共" + books.length + "筆資料";
+	}
+
+	xhttp.open("GET", "../res/book1.xml", true);
+	xhttp.send();
+</script>

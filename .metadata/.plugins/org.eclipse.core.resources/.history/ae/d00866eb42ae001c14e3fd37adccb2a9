@@ -1,0 +1,40 @@
+<h2>Get XML File Demo</h2>
+<table border="1" id="demo"></table>
+<style>
+body {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+th, td {
+	text-align: center;
+	padding: 5px;
+}
+
+#demo {
+	margin-bottom: 10px;
+}
+</style>
+<script>
+	var xhttp = new XMLHttpRequest();
+	xhttp.onreadystatechange = function() {
+		if (xhttp.readyState == 4 && xhttp.status == 200) {
+			var xmlDoc = xhttp.responseXML;
+			var txt = "<tr><th>書籍名稱<th>作者名<th>出版社名<th>出版日期<th>價格";
+			var books = xmlDoc.getElementsByTagName("book");
+			for (let i = 0; i < books.length; i++) {
+				txt += "<td>" + books[i].getAttribute("title");
+				txt += "<td>" + books[i].getAttribute("author");
+				txt += "<td>" + books[i].getAttribute("publisher");
+				txt += "<td>" + books[i].getAttribute("publishDate");
+				txt += "<td>" + books[i].getAttribute("price");
+			}
+			document.getElementById("demo").innerHTML = txt;
+		}
+
+	}
+
+	xhttp.open("GET", "../res/book2.xml", true);
+	xhttp.send();
+</script>
