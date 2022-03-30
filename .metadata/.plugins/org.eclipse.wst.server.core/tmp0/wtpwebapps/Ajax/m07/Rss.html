@@ -1,28 +1,52 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="UTF-8">
-	<title>RSS Demo</title>
-	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<meta charset="UTF-8">
+<title>RSS Demo</title>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<style>
+h2 {
+	text-align: center;
+}
+
+a {
+	text-decoration: none;
+	color: #000;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+th, td {
+	padding: 15px;
+}
+</style>
 </head>
 <body>
 	<h2>RSS Demo</h2>
 	<table border='1' id="demo"></table>
 	<script>
-		$.ajax({
-			url: "../GetRSS",
-			type: "GET",
-			success: function(xml) {
-				var txt = "<tr><th>pubDate<th>title";
-				var pubDates = xml.getElementsByTagName("pubDate");
-				var titles = xml.getElementsByTagName("title");
-				for (let i = 0; i < pubDates.length; i++) {
-					txt += "<tr><td>" + pubDates[i].firstChild.nodeValue;
-					txt += "<td>" + titles[i].firstChild.nodeValue;
-				}
-				$("#demo").html(txt);
-			}
-	    });
+		$
+				.ajax({
+					url : "../GetRSS",
+					type : "GET",
+					success : function(xml) {
+						var txt = "<tr><th>pubDate<th>title<th>link";
+						var pubDates = xml.getElementsByTagName("pubDate");
+						var titles = xml.getElementsByTagName("title");
+						var links = xml.getElementsByTagName("link");
+
+						for (let i = 0; i < pubDates.length; i++) {
+							txt += "<tr><td>"
+									+ pubDates[i].firstChild.nodeValue;
+							txt += "<td>" + titles[i].firstChild.nodeValue;
+							txt += "<td><a href= '" + links[i].firstChild.nodeValue + "' target:"+'"_blank"'+">"
+									+ titles[i].firstChild.nodeValue + "</a>"
+						}
+						$("#demo").html(txt);
+					}
+				});
 	</script>
 </body>
 </html>

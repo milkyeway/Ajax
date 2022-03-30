@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>$.ajax()</title>
+<script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
+</head>
+<body>
+	<h2>$.ajax() Demo</h2>
+	<div id="demo"></div>
+	<script>
+		$.ajax({
+			url : "NameCity.jsp",
+			type : "GET",
+			data : {
+				name : "Henry",
+				city : "Taipei"
+			},
+			success : function(res) {
+				$("#demo").html(res);
+			}
+		});
+	</script>
+
+</body>
+</html>

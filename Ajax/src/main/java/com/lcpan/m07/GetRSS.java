@@ -16,14 +16,14 @@ public class GetRSS extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	public static final String RSS_URL =
-			"http://rss.cnn.com/rss/edition_world.rss";
-
+			//"http://rss.cnn.com/rss/edition_world.rss";
+			"https://news.ltn.com.tw/rss/world.xml";
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response)
 					throws ServletException, IOException {
 		URL url = new URL(RSS_URL);			
 		BufferedReader in = new BufferedReader(
-				new InputStreamReader(url.openStream()));
+				new InputStreamReader(url.openStream(),"UTF-8"));
 		StringBuilder sb = new StringBuilder(1024);
 		String str;
 		while ((str = in.readLine()) != null)

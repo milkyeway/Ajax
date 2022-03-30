@@ -3,13 +3,14 @@
 <head>
 <meta charset="BIG5">
 <title>Insert title here</title>
+<script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
 </head>
 <body>
 
 <h2>Form Serialize Demo</h2>
 <form>
-Name: <input type="text" name="name"><p>
-City: <input type="text" name="city"><p>
+Name: <input type="text" name="name" id="name"><p>
+City: <input type="text" name="city" id="city"><p>
 </form>
 <button id="post">Send</button><p>
 <div id = "demo"></div>
@@ -17,12 +18,17 @@ City: <input type="text" name="city"><p>
 <script>
 $("#post").click(function(){
 	$("#demo").append($("form").serialize()+"<br>");
-	
+	var name = $("#name").val();
+	var city = $("#city").val();
 	$.ajax({
 		url:"NameCity.jsp?" + $("form").serialize(),
 		type:"GET",
+		data:{
+			name:name,
+			city:city
+		},
 		success:function(data){
-					$("#demo").append(data);
+			$("#demo").append(data);
 		}						
 	});	
 });
